@@ -31,5 +31,7 @@ namespace SuperShop.Data.Entities
         public double Stock { get; set; }
 
         public User User { get; set; }
+
+        public string ImageFullPath => String.IsNullOrEmpty(ImageUrl) ? null : $"https://localhost:44378{ImageUrl.Substring(1)}";
     }
 }
