@@ -121,7 +121,7 @@ namespace SuperShop.Controllers
                 try
                 {
                     var path = model.ImageUrl;
-                    if (model.ImageFile != null && model.ImageFile.Length < 0)
+                    if (model.ImageFile != null && model.ImageFile.Length > 0)
                         path = await _imageHelper.UploadImageAsync(model.ImageFile, "products");
 
                     var product = _converterHelper.ToProduct(model, path, false);
