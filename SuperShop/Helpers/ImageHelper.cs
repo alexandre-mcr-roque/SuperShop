@@ -10,7 +10,7 @@ namespace SuperShop.Helpers
         public async Task<string> UploadImageAsync(IFormFile imageFile, string folder)
         {
             string guid = Guid.NewGuid().ToString();
-            string file = $"{guid}.jpg";
+            string file = $"{guid}.png";
 
             string path = Path.Combine(
                 Directory.GetCurrentDirectory(),

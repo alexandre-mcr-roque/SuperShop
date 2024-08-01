@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
+using static System.Net.WebRequestMethods;
 
 namespace SuperShop.Data.Entities
 {
@@ -16,7 +17,7 @@ namespace SuperShop.Data.Entities
         public decimal Price { get; set; }
 
         [Display(Name = "Image")]
-        public string ImageUrl { get; set; }
+        public Guid ImageId { get; set; }
 
         [Display(Name = "Last Purchase")]
         public DateTime? LastPurchase { get; set; }
@@ -29,9 +30,10 @@ namespace SuperShop.Data.Entities
 
         [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
         public double Stock { get; set; }
-
         public User User { get; set; }
 
-        public string ImageFullPath => String.IsNullOrEmpty(ImageUrl) ? null : $"https://localhost:44378{ImageUrl.Substring(1)}";
+        public string ImageFullPath => ImageId == Guid.Empty
+            ? $"https://supershop30648.azurewebsites.net/images/noimage.png"
+            : $"https://supershop30648.blob.core.windows.net/products/{ImageId}";
     }
 }
